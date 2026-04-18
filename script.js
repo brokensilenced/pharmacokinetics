@@ -223,3 +223,18 @@ document.getElementById('startSimulatorBtn').onclick = () => {
 document.getElementById('learnMoreBtn').onclick = () => alert('Фармакокинетика — раздел фармакологии, изучающий движение лекарства в организме. Модель описывает всасывание (ka), выведение (ke) и объём распределения (Vd). Терапевтическое окно: 2–8 мг/л, токсичность >12 мг/л.');
 
 setMode('single');
+
+function observeFormulas() {
+    const cards = document.querySelectorAll('.formula-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    cards.forEach(card => observer.observe(card));
+}
+
+// Вызываем после загрузки симулятора
+setTimeout(observeFormulas, 300);
